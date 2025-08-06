@@ -138,11 +138,12 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
 }
 
 .btnCheck{
     border-radius: 15px;
-    border: 2px solid white;
+    border: 1px solid white;
     margin: 5px;
     width: 7vw;
     height: 4vh;
@@ -164,3 +165,4 @@ h1 {
 .btnCheck:active{
     transform: scale(0.95);
 }
+
