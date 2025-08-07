@@ -1,64 +1,49 @@
 
-// Déclaration des éléments à exporter
-let inputTasks;
-let ul;
+export function bodyWeb() {
+  const myBody = document.querySelector("body");
 
-export function addMain () {
-    // Création des éléments pour la page
-    const myBody = document.querySelector("body");
-    const header = document.createElement("header");
-    const headerLeft = document.createElement("div");
-    const title = document.createElement("h1");
-    const slogan = document.createElement("p");
-    // ----------------------------------------------------------- Cards Tasks -------------------------------------------------------------------------------------------------------
-    const container = document.createElement("div");
-    const cardTasks = document.createElement("div");
-    inputTasks = document.createElement("input");
-    ul = document.createElement("ul");
+  // ------------------------------------------Mon HEADER----------------------------------------------------- //
+  const myheader = document.createElement("header");
+  const divTitle = document.createElement("div");
+  const myTitle = document.createElement("h1");
+  const slogan = document.createElement("p");
+  const btnAdd = document.createElement("button");
 
-    // ----------------------------------------------------------- BUTTON TOUTES, A FAIRE, TERMINEE -------------------------------------------------------------------------------------------------------
-    const btnChekList = document.createElement("div");
-    const btnAll = document.createElement("button");
-    const btnToDo = document.createElement("button");
-    const btnFinish = document.createElement("button");
+  // Création des élements du header
 
-    // ----------------------------------------------------------- HEADER -------------------------------------------------------------------------------------------------------
-    myBody.appendChild(header);
-    header.appendChild(headerLeft);
-    headerLeft.appendChild(title);
-    headerLeft.appendChild(slogan);
-    // ----------------------------------------------------------- Cards Tasks -------------------------------------------------------------------------------------------------------
-    myBody.appendChild(container);
-    container.appendChild(cardTasks);
-    cardTasks.appendChild(inputTasks);
-    // ----------------------------------------------------------- BUTTON TOUTES, A FAIRE, TERMINEE -------------------------------------------------------------------------------------------------------
-    cardTasks.appendChild(btnChekList);
-    btnChekList.appendChild(btnAll);
-    btnChekList.appendChild(btnToDo);
-    btnChekList.appendChild(btnFinish);
-    // ----------------------------------------------------------- Liste des tâches -------------------------------------------------------------------------------------------------------
+  myBody.appendChild(myheader);
+  myheader.appendChild(divTitle);
+  divTitle.appendChild(myTitle);
+  divTitle.appendChild(slogan);
+  myheader.appendChild(btnAdd);
 
-    cardTasks.appendChild(ul);
+  // contenu dans les éléments
 
-    // ----------------------------------------------------------- CONTENU DES ELEMENTS -------------------------------------------------------------------------------------------------------
-    title.textContent = "Trollais";
-    slogan.textContent = "Votre Gestionnaire de tâche préféré";
-    inputTasks.placeholder = "Entré le nom de votre tâche...";
-    btnAll.textContent = "Global";
-    btnToDo.textContent = "A faire";
-    btnFinish.textContent = "Terminer";
+  myTitle.textContent = "Trollais";
+  slogan.textContent = "Votre gestionnaire de tâche préféré";
+  btnAdd.innerHTML = 'Ajouter <ion-icon name="add-circle-outline"></ion-icon>';
 
-    // ----------------------------------------------------------- CREATION DES CLASSES -------------------------------------------------------------------------------------------------------
-    slogan.className = "slogan";
-    headerLeft.className = "header-left";
-    container.className = "container";
-    cardTasks.className = "cardtasks";
-    inputTasks.className = "inputTask";
-    btnChekList.className = "btnChekList";
-    btnAll.className = "btnCheck";
-    btnToDo.className = "btnCheck";
-    btnFinish.className = "btnCheck";
+  // ------------------------------------------Mon BODY----------------------------------------------------- //
+  const containerTask = document.createElement("div");
+  const cardsTask = document.createElement("div");
+  const ulList = document.createElement("ul");
+
+  // Création des élements des div du body
+
+  myBody.appendChild(containerTask);
+  containerTask.appendChild(cardsTask);
+  myBody.appendChild(ulList);
+
+  // ------------------------------------------Ajout de class pour le css----------------------------------------------------- //
+  // HEADER
+
+  divTitle.className = "titleHeader";
+  slogan.className = "slogan";
+  btnAdd.className = "btnAdd";
+
+  // BODY
+
+  containerTask.className = "container";
+  cardsTask.className = "cardsTask";
+  ulList.className = "listTask";
 }
-
-// Export des éléments nécessaires
-export { inputTasks, ul };

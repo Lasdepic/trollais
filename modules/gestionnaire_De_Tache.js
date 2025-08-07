@@ -1,56 +1,108 @@
-import { inputTasks, ul } from "./pages.js";
+export function addTask() {
+  let tableauLocalStorage =  [
+    {
+      nomListe: "Liste",
+      tache: ["Tache 1", "Tâche 2"],
+    },
+    {
+      nomListe: "A faire",
+      tache: ["Tache 1", "Tâche 2"],
+    },
+    {
+      nomListe: "En progrès",
+      tache: ["Tache 1", "Tâche 2"],
+    },
+    {
+      nomListe: "A tester",
+      tache: ["Tache 1", "Tâche 2"],
+    },
+    {
+      nomListe: "Fini",
+      tache: ["Tache 1", "Tâche 2"],
+    },
+  ];
 
-export function gestionnaireDeTache() {
-  function addTask() {
-    let nameTache = inputTasks.value.trim();
+  const btnAdd = document.querySelector(".btnAdd");
+  const ulList = document.querySelector(".listTask");
 
-    if (nameTache === "" || nameTache === null) {
-      return;
-    }
+  if (btnAdd && ulList) {
+    btnAdd.addEventListener("click", () => {
+      const taskText = prompt("Donner la priorité de votre tâche :");
+      if (taskText) {
 
-    let listeDeTache = document.createElement("li");
-    listeDeTache.textContent = nameTache;
+        // Création de la liste
 
-    // btn edit
-    const editBtn = document.createElement("button");
-    editBtn.innerHTML = '<ion-icon name="create-outline"></ion-icon>';
-    editBtn.className = "editBtn";
-    editBtn.onclick = function () {
-      const newName = prompt(
-        "Modifier le nom de la tâche :",
-        listeDeTache.firstChild.textContent
-      );
-      if (newName !== null && newName.trim() !== "") {
-        listeDeTache.firstChild.textContent = newName.trim();
+        const task = document.createElement("li");
+        task.textContent = taskText;
+        ulList.appendChild(task);
+
+        // Création button ajouter dans une liste dans la tâche
+
+        const addlist = document.createElement("button");
+        addlist.innerHTML = '<ion-icon name="add-circle-outline"></ion-icon>';
+        task.appendChild(addlist);
+
+        // Création du button modifier dans le li
+
+        const editBtn = document.createElement("button");
+        editBtn.innerHTML = '<ion-icon name="create-outline"></ion-icon>';
+        task.appendChild(editBtn);
+
+        // Création du button delete dans le li
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.innerHTML =
+          '<ion-icon name="close-circle-outline"></ion-icon>';
+        task.appendChild(deleteBtn);
+        deleteBtn.className = "deleteBtn";
+
+        //surrp la list
+
+        deleteBtn.addEventListener("click", () => {
+          task.remove();
+        });
+
+        // Création d'une liste dans une liste
+
+        if (addlist) {
+          addlist.addEventListener("click", () => {
+            const taskIntoName = prompt("donner le nom tâche :");
+
+            if (taskIntoName) {
+              const subList = document.createElement("ul");
+              task.appendChild(subList);
+
+              const taskInto = document.createElement("li");
+              taskInto.textContent = taskIntoName;
+              subList.appendChild(taskInto);
+
+              //   creation du button de la sousliste
+
+              const deleteBtnSubList = document.createElement("button");
+              deleteBtnSubList.innerHTML =
+                '<ion-icon name="close-circle-outline"></ion-icon>';
+              taskInto.appendChild(deleteBtnSubList); // <-- Correction ici
+              deleteBtnSubList.className = "deleteBtnSubList";
+
+              // suppr la sousListe
+              deleteBtnSubList.addEventListener("click", () => {
+                taskInto.remove();
+              });
+
+              //   Creation du button change background color
+
+              const colorBtn = document.createElement("input");
+              colorBtn.innerHTML =
+                '<ion-icon name="color-palette-outline"></ion-icon>';
+              colorBtn.type = "color";
+              subList.appendChild(colorBtn);
+              colorBtn.addEventListener("input", (e) => {
+                taskInto.style.backgroundColor = e.target.value;
+              });
+            }
+          });
+        }
       }
-    };
-
-    // btn suppr
-    const deleteBtn = document.createElement("button");
-    deleteBtn.innerHTML = '<ion-icon name="close-circle-outline"></ion-icon>';
-    deleteBtn.className = "deleteBtn";
-    deleteBtn.onclick = function () {
-      listeDeTache.remove();
-    };
-
-    // Ajouter les boutons à la tâche
-    listeDeTache.appendChild(editBtn);
-    listeDeTache.appendChild(deleteBtn);
-
-    // Ajouter la tâche à la liste
-    ul.appendChild(listeDeTache);
-
-    // Vider l'input
-    inputTasks.value = "";
+    });
   }
-
-  // Event listener pour la touche Enter (une seule fois)
-  inputTasks.addEventListener("keypress", function (press) {
-    if (press.key === "Enter") {
-      addTask();
-    }
-  });
-
-  // Retourner la fonction addTask pour pouvoir l'utiliser ailleurs
-  return { addTask };
 }
