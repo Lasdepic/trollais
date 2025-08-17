@@ -1,7 +1,8 @@
+import { addTask } from "./gestionnaire_De_Tache.js";
+import { loadTasks } from "./localStorage.js";
 
 export function bodyWeb() {
   const myBody = document.querySelector("body");
-
   // ------------------------------------------Mon HEADER----------------------------------------------------- //
   const myheader = document.createElement("header");
   const divTitle = document.createElement("div");
@@ -46,4 +47,16 @@ export function bodyWeb() {
   containerTask.className = "container";
   cardsTask.className = "cardsTask";
   ulList.className = "listTask";
+
+  // Charger les tâches depuis localStorage
+  const todos = loadTasks();
+  todos.forEach(tacheData => {
+    addTask(tacheData);
+  });
+
+  if (btnAdd && ulList) {
+    btnAdd.addEventListener("click", () => addTask());
+  }
 }
+
+
