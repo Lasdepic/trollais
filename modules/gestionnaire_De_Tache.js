@@ -180,10 +180,10 @@ export function addTask(tacheData) {
         }
         colorSelect.appendChild(option);
       }
-      taskInto.appendChild(colorSelect);
+      subList.appendChild(colorSelect);
 
-      colorSelect.addEventListener("change", (e) => {
-        taskInto.style.backgroundColor = e.target.value;
+      colorSelect.addEventListener("change", (element) => {
+        taskInto.style.backgroundColor = element.target.value;
         saveTasks();
       });
 // Drag an drop // https://www.npmjs.com/package/sortablejs
