@@ -1,6 +1,5 @@
-import { bodyWeb } from "./modules/pages.js";
+import { bodyWeb } from "./modules/toDoList/pages.js";
 
-bodyWeb();
-
-
-
+if (window.location.pathname.includes("toDoList.html")) {
+  bodyWeb();
+}
