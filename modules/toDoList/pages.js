@@ -10,6 +10,15 @@ export function bodyWeb() {
   const slogan = document.querySelector("p");
   const btnAdd = document.createElement("button");
 
+  // Affichage du nom d'utilisateur si présent
+  const userName = localStorage.getItem("userName");
+  if (userName) {
+    const userTitle = document.createElement("h2");
+    userTitle.className = "tacheDe";
+    userTitle.textContent = `La tâche de ${userName}`;
+    myheader.appendChild(userTitle);
+  }
+
   // Création des élements du header
   myheader.appendChild(btnAdd);
 
@@ -28,7 +37,7 @@ export function bodyWeb() {
 
   // Charger les tâches depuis localStorage
   const todos = loadTasks();
-  todos.forEach(tacheData => {
+  todos.forEach((tacheData) => {
     addTask(tacheData);
   });
 
@@ -36,5 +45,3 @@ export function bodyWeb() {
     btnAdd.addEventListener("click", () => addTask());
   }
 }
-
-
