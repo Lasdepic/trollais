@@ -19,7 +19,7 @@ export function saveTasks() {
       const subLists = taskElement.querySelectorAll("ul li");
       subLists.forEach((subTask) => {
         const subTaskData = {
-          name: subTask.textContent.replace("×", ""), // Enlever le bouton delete du texte
+          name: subTask.textContent.replace("×", ""), 
           backgroundColor: subTask.style.backgroundColor || "",
           colorSelect: subTask.querySelector("select")?.value || "",
         };
