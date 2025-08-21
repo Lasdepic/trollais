@@ -1,5 +1,4 @@
 import { saveTasks } from "./localStorage.js";
-
 // -----------------------------------------------------------------------------APPEL DES FONCTIONS-------------------------------------------------------------------------------------------
 
 export function addTask(tacheData) {
@@ -22,10 +21,10 @@ export function addTask(tacheData) {
       task.style.backgroundColor = tacheData.backgroundColor;
     }
 
-    // Créer l'élément pour le nom de la tâche
     const taskName = document.createElement("span");
     taskName.className = "task-name";
     taskName.textContent = taskText;
+    taskName.setAttribute("aria-label", `Nom de la tâche: ${taskText}`);
     task.appendChild(taskName);
 
     // -----------------------------------------------------DATE && HEURE-----------------------------------------------------------
@@ -35,12 +34,14 @@ export function addTask(tacheData) {
       delaiDate.type = "date";
       delaiDate.className = "delai";
       delaiDate.value = tacheData ? tacheData.date : "";
+      delaiDate.setAttribute("aria-label", "Date limite de la tâche");
       task.appendChild(delaiDate);
 
       const heureDelai = document.createElement("input");
       heureDelai.type = "time";
       heureDelai.className = "heure";
       heureDelai.value = tacheData ? tacheData.time : "";
+      heureDelai.setAttribute("aria-label", "Heure limite de la tâche");
       task.appendChild(heureDelai);
 
       delaiDate.addEventListener("change", () => {
@@ -81,6 +82,7 @@ export function addTask(tacheData) {
       ];
 
       const colorSelect = document.createElement("select");
+      colorSelect.setAttribute("aria-label", "Sélectionner la couleur de priorité de la tâche");
 
       for (let i = 0; i < colors.length; i++) {
         const option = document.createElement("option");
@@ -115,14 +117,14 @@ export function addTask(tacheData) {
     taskHeader.appendChild(buttonGroup);
     ulList.appendChild(task);
 
-    // Création button ajouter dans une liste dans la tâche
     const addlist = document.createElement("button");
     addlist.innerHTML = '<ion-icon name="add-circle-outline"></ion-icon>';
+    addlist.setAttribute("aria-label", "Ajouter une sous-tâche");
     buttonGroup.appendChild(addlist);
 
-    // Création du button modifier dans le li
     const editBtn = document.createElement("button");
     editBtn.innerHTML = '<ion-icon name="create-outline"></ion-icon>';
+    editBtn.setAttribute("aria-label", "Modifier la tâche");
     buttonGroup.appendChild(editBtn);
 
     // Modifie le nom de la tâche
@@ -141,6 +143,7 @@ export function addTask(tacheData) {
     function createDeleteSubList() {
       const deleteBtn = document.createElement("button");
       deleteBtn.innerHTML = '<ion-icon name="close-circle-outline"></ion-icon>';
+      deleteBtn.setAttribute("aria-label", "Supprimer la tâche");
       buttonGroup.appendChild(deleteBtn);
       deleteBtn.className = "deleteBtn";
       deleteBtn.addEventListener("click", () => {
@@ -164,6 +167,7 @@ export function addTask(tacheData) {
 
       const taskInto = document.createElement("li");
       taskInto.textContent = subTaskName;
+      taskInto.setAttribute("aria-label", `Sous-tâche: ${subTaskName}`);
       subList.appendChild(taskInto);
 
       if (subTaskData && subTaskData.backgroundColor) {
@@ -174,6 +178,7 @@ export function addTask(tacheData) {
         const deleteBtnSubList = document.createElement("button");
         deleteBtnSubList.innerHTML =
           '<ion-icon name="close-circle-outline"></ion-icon>';
+        deleteBtnSubList.setAttribute("aria-label", "Supprimer la sous-tâche");
         taskInto.appendChild(deleteBtnSubList);
         deleteBtnSubList.className = "deleteBtnSubList";
 
@@ -198,6 +203,7 @@ export function addTask(tacheData) {
         ];
 
         const colorSelect = document.createElement("select");
+        colorSelect.setAttribute("aria-label", "Sélectionner le statut de la sous-tâche");
 
         for (let i = 0; i < colors.length; i++) {
           const option = document.createElement("option");

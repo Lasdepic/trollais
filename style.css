@@ -1,12 +1,157 @@
 @import url(https://fonts.googleapis.com/css2?family=Playwrite+AU+NSW&display=swap);
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.listTask ul li {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .listTask {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .listTask > li {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  header {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    gap: 10px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  .slogan {
+    font-size: 16px;
+  }
+
+  .btnAdd {
+    width: clamp(120px, 40vw, 200px);
+    font-size: 14px;
+    height: auto;
+    padding: 8px 12px;
+  }
+
+  .listTask {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  .slogan {
+    font-size: 14px;
+  }
+
+  .btnAdd {
+    width: 60%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .listTask {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .listTask > li {
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .slogan {
+    font-size: 12px;
+  }
+
+  .btnAdd {
+    width: 80%;
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .listTask > li {
+    padding: 12px;
+    gap: 8px;
+    max-width: 400px;
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  .task-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .listTask .button-group {
+    gap: 4px;
+  }
+
+  .listTask .button-group button {
+    width: 22px;
+    height: 22px;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html,body {
+html,
+body {
   background-color: #545454;
   background-repeat: no-repeat;
   background-size: cover;
@@ -29,12 +174,12 @@ header {
   z-index: 10;
 }
 
-h1{
-    font-size: 52px;
+h1 {
+  font-size: 48px;
 }
 
-.slogan{
-    font-size: 18px;
+.slogan {
+  font-size: 18px;
 }
 
 .titleHeader {
@@ -61,12 +206,13 @@ h1{
   font-size: 16px;
 }
 
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
 
-a:hover, a:visited{
+a:hover,
+a:visited {
   color: inherit;
 }
 
@@ -80,6 +226,9 @@ main {
   padding: 20px;
   width: 100%;
   margin-top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .listTask {
@@ -257,154 +406,8 @@ main {
   align-self: flex-end;
 }
 
-
 .listTask > li {
   animation: slideIn 0.3s ease-out;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-.listTask ul li {
-  animation: fadeIn 0.2s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Responsive */
-
-@media (max-width: 768px) {
-  .listTask {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .listTask > li {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-@media (max-width: 1024px) {
-  header {
-    flex-direction: column;
-    height: auto;
-    padding: 15px;
-    gap: 10px;
-    text-align: center;
-  }
-
-  h1 {
-    font-size: 40px;
-  }
-
-  .slogan {
-    font-size: 16px;
-  }
-
-  .btnAdd {
-    width: clamp(120px, 40vw, 200px);
-    font-size: 14px;
-    height: auto;
-    padding: 8px 12px;
-  }
-
-  .listTask {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 32px;
-  }
-
-  .slogan {
-    font-size: 14px;
-  }
-
-  .btnAdd {
-    width: 60%;
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  .listTask {
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center;
-    gap: 15px;
-    padding: 0;
-    max-width: 100%;
-    overflow-x: hidden; 
-  }
-
-  .listTask > li {
-    width: 90%;
-    max-width: 400px;
-    margin: 0 auto; 
-  }
-} 
-
-@media (max-width: 480px) {
-  header {
-    padding: 10px;
-  }
-
-  h1 {
-    font-size: 26px;
-  }
-
-  .slogan {
-    font-size: 12px;
-  }
-
-  .btnAdd {
-    width: 80%;
-    font-size: 13px;
-    padding: 8px;
-  }
-
-  .listTask > li {
-    padding: 12px;
-    gap: 8px;
-    max-width: 400px;
-    margin: 0 auto;
-    width: 90%;
-  }
-
-  .task-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-
-  .listTask .button-group {
-    gap: 4px;
-  }
-
-  .listTask .button-group button {
-    width: 22px;
-    height: 22px;
-  }
 }
 
 /* -------------------------------------------------------BTN COLOR----------------------------------------------------------------- */
@@ -417,7 +420,7 @@ select.colorSelect {
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 select.colorSelect:hover {
@@ -434,4 +437,63 @@ select.colorSelect:focus {
 select.colorSelect option {
   padding: 8px;
   background-color: white;
+}
+
+/* ------------------------Connxion---------------------------------------- */
+
+.centerConnexion {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.containerConnexion {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  min-width: 300px;
+  transform: translateY(-50px);
+}
+
+.containerConnexion h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.containerConnexion input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.containerConnexion button {
+  padding: 12px 20px;
+  background-color: #545454;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: center;
+  min-width: 120px;
+}
+
+.containerConnexion button:hover {
+  background-color: #343434;
+}
+
+.tacheDe{
+  color: white;
+  font-family: "playwrite AU NSW";
+  font-size: 28px;
 }

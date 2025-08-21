@@ -10,25 +10,28 @@ export function bodyWeb() {
   const slogan = document.querySelector("p");
   const btnAdd = document.createElement("button");
 
-  // Création des élements du header
+  const userName = localStorage.getItem("userName");
+  if (userName) {
+    const userTitle = document.createElement("h2");
+    userTitle.className = "tacheDe";
+    userTitle.textContent = `La tâche de ${userName}`;
+    userTitle.setAttribute("aria-label", `Liste des tâches de ${userName}`);
+    myheader.appendChild(userTitle);
+  }
+
   myheader.appendChild(btnAdd);
 
-  // contenu dans les éléments
   btnAdd.innerHTML = 'Ajouter <ion-icon name="add-circle-outline"></ion-icon>';
+  btnAdd.setAttribute("aria-label", "Ajouter une nouvelle tâche");
 
-  // ------------------------------------------Mon BODY----------------------------------------------------- //
   const containerTask = document.querySelector(".container");
   const cardsTask = document.querySelector(".cardsTask");
   const ulList = document.querySelector(".listTask");
 
-  // ------------------------------------------Ajout de class pour le css----------------------------------------------------- //
-  // HEADER
-
   btnAdd.className = "btnAdd";
 
-  // Charger les tâches depuis localStorage
   const todos = loadTasks();
-  todos.forEach(tacheData => {
+  todos.forEach((tacheData) => {
     addTask(tacheData);
   });
 
@@ -36,5 +39,3 @@ export function bodyWeb() {
     btnAdd.addEventListener("click", () => addTask());
   }
 }
-
-
