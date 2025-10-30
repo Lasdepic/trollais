@@ -1,5 +1,8 @@
 import express from "express";
 import ollama from "ollama";
+import { connectDb } from "./config/database.js";
+
+connectDb();
 
 const app = express();
 app.use(express.json());
