@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const uri = "mongodb+srv://trollais:trollais@mongodb.vkzebfs.mongodb.net/?appName=mongoDb";
+dotenv.config();
+
+const uri = process.env.MONGODB_URI;
+
 
 // Options forwarded to mongoose.connect
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
